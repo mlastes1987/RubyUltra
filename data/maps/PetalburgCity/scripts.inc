@@ -278,10 +278,11 @@ PetalburgCity_EventScript_RareCandyGirl::
 	lock
 	faceplayer
 	msgbox GiveYouRareCandyText, MSGBOX_DEFAULT
+	closemessage
 	waitstate
 	giveitem ITEM_RARE_CANDY, 99
-	waitstate
 	msgbox ComeSeeMeAgainText, MSGBOX_DEFAULT
+	closemessage
 	release
 	end
 
@@ -289,10 +290,11 @@ PetalburgCity_EventScript_MasterBallGirl::
 	lock
 	faceplayer
 	msgbox GiveYouMasterBallText, MSGBOX_DEFAULT
+	closemessage
 	waitstate
 	giveitem ITEM_RARE_CANDY, 99
-	waitstate
 	msgbox ComeSeeMeAgainText, MSGBOX_DEFAULT
+	closemessage
 	release
 	end
 
@@ -451,15 +453,12 @@ PetalburgCity_EventScript_GymBoy:: @ 814BA2D
 	end
 
 GiveYouRareCandyText:
-	.string "Hey, need some\n"
-	.string "RARE CANDY?\p"
+	.string "Hey, need some RARE CANDYs?\n"
 	.string "Here you go!$"
 
 GiveYouMasterBallText:
-	.string "Hey, need some\n"
-	.string "MASTER BALLs?\p"
+	.string "Hey, need some MASTER BALLs?\n"
 	.string "Here you go!$"
 
 ComeSeeMeAgainText:
-	.string "Come see me\n"
-	.string "Again anytime!$"
+	.string "Come see me again anytime!$"
