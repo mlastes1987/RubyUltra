@@ -290,7 +290,7 @@ PetalburgCity_EventScript_MasterBallGirl::
 	faceplayer
 	msgbox GiveYouMasterBallText, MSGBOX_DEFAULT
 	closemessage
-	giveitem ITEM_RARE_CANDY, 99
+	giveitem ITEM_MASTER_BALL, 99
 	msgbox ComeSeeMeAgainText, MSGBOX_DEFAULT
 	closemessage
 	release
