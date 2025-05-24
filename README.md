@@ -1,15 +1,21 @@
-# Pokémon Ruby and Sapphire [![Build Status][travis-badge]][travis]
+# Pokémon Ruby and Sapphire Ultra
 
-This is a disassembly of Pokémon Ruby and Sapphire.
+Based on the [**pokeruby**](https://github.com/pret/pokeruby) disassembly from pret.
 
-It builds the following roms:
+# Features Implemented
 
-* pokeruby.gba `sha1: f28b6ffc97847e94a6c21a63cacf633ee5c8df1e`
-* pokesapphire.gba `sha1: 3ccbbd45f8553c36463f13b938e833f652b793e4`
+- **Special Features Twins:** in front of the southmost house in Petalburg City you can find 2 girls that from left to right give you 99 Rare Candies and then 99 Master Balls respectively.  This is a great feature for more casual players.
 
-To set up the repository, see [INSTALL.md](INSTALL.md).
+- **Trade Evolutions:** Kadabra, Graveler, Machoke and Haunter evolve at level 37.
 
-For contacts and other pret projects, see [pret.github.io](https://pret.github.io/).
+- **Item Holding Trade Evolutions:** Any mon that evolves while being traded holding an item (i.e. Poliwhirl holding King's Rock for Politoed) can now evolve by using the items from the bag.
 
-[travis]: https://travis-ci.org/pret/pokeruby
-[travis-badge]: https://travis-ci.org/pret/pokeruby.svg?branch=master
+- **Changed Starters:** The starters have been changed to Treecko, Cyndaquil, and Squirtle.  Their movesets have also seen some changes.
+
+- **Moveset Changes:** Other mons, such as the trade evolutions have changes and others will see changes throughout the progress of the design of this mod.
+
+- **Startup Money:** Instead of 3,000 you now start with 35,000 Pokedollars much like Gen 7.
+
+- **Startup PC Items:** You now in addition to a Potion, start with 99 PP UPs.
+
+Coming soon...

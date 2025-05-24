@@ -274,6 +274,28 @@ PetalburgCity_EventScript_LeadPlayerToGym3:: @ 814B99B
 	delay_16
 	step_end
 
+PetalburgCity_EventScript_RareCandyGirl::
+	lock
+	faceplayer
+	msgbox GiveYouRareCandyText, MSGBOX_DEFAULT
+	waitstate
+	giveitem ITEM_RARE_CANDY, 99
+	waitstate
+	msgbox ComeSeeMeAgainText, MSGBOX_DEFAULT
+	release
+	end
+
+PetalburgCity_EventScript_MasterBallGirl::
+	lock
+	faceplayer
+	msgbox GiveYouMasterBallText, MSGBOX_DEFAULT
+	waitstate
+	giveitem ITEM_RARE_CANDY, 99
+	waitstate
+	msgbox ComeSeeMeAgainText, MSGBOX_DEFAULT
+	release
+	end
+
 PetalburgCity_Movement_BoyApproachPlayer0:: @ 814B9B1
 	walk_right
 	walk_right
@@ -427,3 +449,17 @@ PetalburgCity_Movement_PlayerWalkToGym3:: @ 814BA22
 PetalburgCity_EventScript_GymBoy:: @ 814BA2D
 	msgbox PetalburgCity_Text_AreYouRookieTrainer, MSGBOX_NPC
 	end
+
+GiveYouRareCandyText:
+	.string "Hey, need some\n"
+	.string "RARE CANDY?\p"
+	.string "Here you go!$"
+
+GiveYouMasterBallText:
+	.string "Hey, need some\n"
+	.string "MASTER BALLs?\p"
+	.string "Here you go!$"
+
+ComeSeeMeAgainText:
+	.string "Come see me\n"
+	.string "Again anytime!$"
