@@ -42,3 +42,14 @@ PetalburgCity_Text_CitySign:: @ 8164602
 
 PetalburgCity_Text_WallyHouseSign:: @ 8164634
 	.string "WALLY'S HOUSE$"
+
+GiveYouRareCandyText:
+	.string "Hey, need some RARE CANDYs?\n"
+	.string "Here you go!$"
+
+GiveYouMasterBallText:
+	.string "Hey, need some MASTER BALLs?\n"
+	.string "Here you go!$"
+
+ComeSeeMeAgainText:
+	.string "Come see me again anytime!$"

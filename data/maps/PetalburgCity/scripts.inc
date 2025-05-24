@@ -279,7 +279,6 @@ PetalburgCity_EventScript_RareCandyGirl::
 	faceplayer
 	msgbox GiveYouRareCandyText, MSGBOX_DEFAULT
 	closemessage
-	waitstate
 	giveitem ITEM_RARE_CANDY, 99
 	msgbox ComeSeeMeAgainText, MSGBOX_DEFAULT
 	closemessage
@@ -291,7 +290,6 @@ PetalburgCity_EventScript_MasterBallGirl::
 	faceplayer
 	msgbox GiveYouMasterBallText, MSGBOX_DEFAULT
 	closemessage
-	waitstate
 	giveitem ITEM_RARE_CANDY, 99
 	msgbox ComeSeeMeAgainText, MSGBOX_DEFAULT
 	closemessage
@@ -451,14 +449,3 @@ PetalburgCity_Movement_PlayerWalkToGym3:: @ 814BA22
 PetalburgCity_EventScript_GymBoy:: @ 814BA2D
 	msgbox PetalburgCity_Text_AreYouRookieTrainer, MSGBOX_NPC
 	end
-
-GiveYouRareCandyText:
-	.string "Hey, need some RARE CANDYs?\n"
-	.string "Here you go!$"
-
-GiveYouMasterBallText:
-	.string "Hey, need some MASTER BALLs?\n"
-	.string "Here you go!$"
-
-ComeSeeMeAgainText:
-	.string "Come see me again anytime!$"
