@@ -613,7 +613,7 @@ static void sub_80C2A8C(u8 taskId)
             HandleLoadSpecialPokePic(gMonFrontPicTable + species, gMonFrontPicCoords[species].coords, gMonFrontPicCoords[species].y_offset, (void *)gSharedMem, gMonSpriteGfx_Sprite_ptr[1], species, personality);
             monPal = GetMonSpritePalStructFromOtIdPersonality(species, otId, personality);
             LoadCompressedObjectPalette(monPal);
-            GetMonSpriteTemplate_803C56C(species, 1);
+            SetMultiuseSpriteTemplateToPokemon(species, 1);
             gCreatingSpriteTemplate.paletteTag = monPal->tag;
             spriteId = CreateSprite(&gCreatingSpriteTemplate, 0x110, 0x50, 10);
             gSprites[spriteId].data[1] = species;
@@ -1996,7 +1996,7 @@ void sub_80C3C44(struct Sprite *sprite)
     {
         if (++sprite->data[0] == 10)
         {
-            PlayCry1(sprite->data[1], 0);
+            PlayCry_Normal(sprite->data[1], 0);
             sprite->data[1] = 0;
         }
     }
@@ -2765,7 +2765,7 @@ void sub_80C489C(u8 taskId)
 
 void sub_80C48C8(void)
 {
-    ScriptContext2_Enable();
+    LockPlayerFieldControls();
     CreateTask(sub_80C489C, 10);
     BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
 }
@@ -2786,7 +2786,7 @@ void sub_80C4914(u8 taskId)
 
 void sub_80C4940(void)
 {
-    ScriptContext2_Enable();
+    LockPlayerFieldControls();
     CreateTask(sub_80C4914, 10);
     BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
 }
@@ -2799,7 +2799,7 @@ void ScrSpecial_GetContestPlayerMonIdx(void)
 void ContestLinkTransfer(u8 category)
 {
     u8 taskId;
-    ScriptContext2_Enable();
+    LockPlayerFieldControls();
     taskId = CreateTask(Task_LinkContest_Init, 0);
     SetTaskFuncWithFollowupFunc(taskId, Task_LinkContest_Init, Task_StartCommunication);
     gTasks[taskId].data[9] = category;
@@ -2889,8 +2889,8 @@ void Task_LinkContest_FinalizeConnection(u8 taskId)
     else
     {
         DestroyTask(taskId);
-        ScriptContext2_Disable();
-        EnableBothScriptContexts();
+        UnlockPlayerFieldControls();
+        ScriptContext_Enable();
     }
 }
 
@@ -2905,7 +2905,7 @@ void Task_LinkContest_WaitDisconnect(u8 taskId)
     if (!gReceivedRemoteLinkPlayers)
     {
         DestroyTask(taskId);
-        ScriptContext2_Disable();
-        EnableBothScriptContexts();
+        UnlockPlayerFieldControls();
+        ScriptContext_Enable();
     }
 }

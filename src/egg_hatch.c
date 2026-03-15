@@ -361,7 +361,7 @@ static u8 EggHatchCreateMonSprite(u8 a0, u8 switchID, u8 pokeID)
         }
         break;
     case 1:
-        GetMonSpriteTemplate_803C56C(GetMonSpritePalStruct(mon)->tag, r5);
+        SetMultiuseSpriteTemplateToPokemon(GetMonSpritePalStruct(mon)->tag, r5);
         spriteID = CreateSprite(&gCreatingSpriteTemplate, 120, 70, 6);
         gSprites[spriteID].invisible = TRUE;
         gSprites[spriteID].callback = SpriteCallbackDummy;
@@ -379,7 +379,7 @@ static void VBlankCB_EggHatch(void)
 
 void EggHatch(void)
 {
-    ScriptContext2_Enable();
+    LockPlayerFieldControls();
     CreateTask(Task_EggHatch, 10);
     BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB(0, 0, 0));
 }
