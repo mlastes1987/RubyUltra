@@ -114,13 +114,19 @@ SYM := $(ROM:%.gba=%.sym)
 
 BUILD_DIR := build/$(BUILD_NAME)
 DATA_ASM_SUBDIR = data
+MID_SUBDIR := sound/songs/midi
+MID_BUILDDIR := $(BUILD_DIR)/$(MID_SUBDIR)
+
+MID_SRCS := $(wildcard $(MID_SUBDIR)/*.mid)
+MID_OBJS := $(patsubst $(MID_SUBDIR)/%.mid,$(MID_BUILDDIR)/%.o,$(MID_SRCS))
 
 C_SOURCES    := $(wildcard src/*.c src/*/*.c src/*/*/*.c)
 ASM_SOURCES  := $(wildcard src/*.s src/*/*.s asm/*.s data/*.s sound/*.s sound/*/*.s)
 
 C_OBJECTS    := $(addprefix $(BUILD_DIR)/, $(C_SOURCES:%.c=%.o))
 ASM_OBJECTS  := $(addprefix $(BUILD_DIR)/, $(ASM_SOURCES:%.s=%.o))
-ALL_OBJECTS  := $(C_OBJECTS) $(ASM_OBJECTS)
+ALL_OBJECTS  := $(C_OBJECTS) $(ASM_OBJECTS) $(MID_OBJS)
+
 OBJS_REL     := $(ALL_OBJECTS:$(BUILD_DIR)/%=%)
 
 SUBDIRS        := $(sort $(dir $(ALL_OBJECTS)))
@@ -209,6 +215,7 @@ clean: tidy
 	find sound/direct_sound_samples \( -iname '*.bin' \) -exec rm {} +
 	$(RM) $(ALL_OBJECTS)
 	find . \( -iname '*.1bpp' -o -iname '*.4bpp' -o -iname '*.8bpp' -o -iname '*.gbapal' -o -iname '*.lz' -o -iname '*.rl' \) -exec rm {} +
+	rm -f $(MID_SUBDIR)/*.s
 	rm -f data/layouts/layouts.inc data/layouts/layouts_table.inc
 	rm -f data/maps/connections.inc data/maps/events.inc data/maps/groups.inc data/maps/headers.inc
 	find data/maps \( -iname 'connections.inc' -o -iname 'events.inc' -o -iname 'header.inc' \) -exec rm {} +
@@ -296,6 +303,9 @@ compare_sapphire_de:       ; @$(MAKE) GAME_VERSION=SAPPHIRE GAME_LANGUAGE=GERMAN
 compare_sapphire_de_debug: ; @$(MAKE) GAME_VERSION=SAPPHIRE GAME_LANGUAGE=GERMAN DEBUG=1 COMPARE=1
 compare_sapphire_de_rev1:  ; @$(MAKE) GAME_VERSION=SAPPHIRE GAME_LANGUAGE=GERMAN GAME_REVISION=1 COMPARE=1
 
+
+include audio_rules.mk
+
 #### Graphics Rules ####
 
 GFX_OPTS :=
@@ -318,17 +328,6 @@ generated: $(AUTO_GEN_TARGETS)
 %.gbapal: %.png ; $(GBAGFX) $< $@ $(GFX_OPTS)
 %.lz:     %     ; $(GBAGFX) $< $@ $(GFX_OPTS)
 %.rl:     %     ; $(GBAGFX) $< $@ $(GFX_OPTS)
-
-#### Sound Rules ####
-
-sound/direct_sound_samples/cries/cry_%.bin: sound/direct_sound_samples/cries/cry_%.wav
-	$(WAV2AGB) -b -c -l 1 --no-pad $< $@
-
-sound/%.bin: sound/%.wav
-	$(WAV2AGB) -b $< $@
-
-sound/songs/%.s: sound/songs/%.mid
-	cd $(@D) && ../../$(MID2AGB) $(<F)
 
 ###################
 ### Symbol file ###
